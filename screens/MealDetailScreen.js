@@ -1,12 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
-const MealDetailScreen = () => {
+const MealDetailScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>MealDetail Screen !!!</Text>
       <StatusBar style="auto" />
+      <Button title="Go to Cetogories" onPress={() => navigation.popToTop()} /> 
     </View>
   );
 }

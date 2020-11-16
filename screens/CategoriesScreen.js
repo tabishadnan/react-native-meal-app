@@ -1,13 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, FlatList, Text, View } from 'react-native';
+import { set } from 'react-native-reanimated';
 
-const CategoriesScreen = () => {
+import { CATEGORIES } from '../categories/Categories';
+
+const CategoriesScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text>Categories Screen !!!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <FlatList
+      keyExtractor={(item, index) => item.id}
+      data={CATEGORIES}
+      renderItem={(cat) => <View style={styles.container} onTouchStart={() => {
+        navigation.navigate("Category Meals Screen", { ctitle : cat.item.title });
+      }}>
+        <Text>{cat.item.title}</Text>
+      </View>}
+      numColumns={2} />
   );
 }
 
@@ -17,6 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    height:150,
   },
 });
 
