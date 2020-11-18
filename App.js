@@ -7,24 +7,41 @@ import CategoryMealsScreen from './screens/CategoryMealsScreen';
 import FavouritesScreen from './screens/FavouritesScreen';
 import FiltersScreen from './screens/FiltersScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
-import { round } from 'react-native-reanimated';
-import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 
 const Stack = createStackNavigator();
+
+const headerStyle = {
+  headerTintColor: "#ffffff",
+  headerStyle: {
+    backgroundColor: 'teal'
+  },
+};
 
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="CategoriesScreen">
-        <Stack.Screen name="Categories Screen" component={CategoriesScreen} />
+        <Stack.Screen name="Categories Screen" component={CategoriesScreen}
+          options={headerStyle}
+        />
         <Stack.Screen name="Category Meals Screen" component={CategoryMealsScreen}
           options={{
-            title : "Category Meals Screen"
+            title: "Category Meals Screen",
+            headerTintColor: "#ffffff",
+            headerStyle: {
+              backgroundColor: 'teal'
+            },
           }}
         />
-        <Stack.Screen name="Favourites Screen" component={FavouritesScreen} />
-        <Stack.Screen name="Filters Screen" component={FiltersScreen} />
-        <Stack.Screen name="Meal Detail Screen" component={MealDetailScreen} />
+        <Stack.Screen name="Favourites Screen" component={FavouritesScreen}
+          options={headerStyle}
+        />
+        <Stack.Screen name="Filters Screen" component={FiltersScreen}
+          options={headerStyle}
+        />
+        <Stack.Screen name="Meal Detail Screen" component={MealDetailScreen}
+          options={headerStyle}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
