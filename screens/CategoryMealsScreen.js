@@ -1,34 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Text } from 'react-native';
+import GridMealItemScreen from '../meals/GridMealItemScreen';
+import { MEALS } from '../meals/MealsScreen';
 
 const CategoryMealsScreen = ({ navigation, route }) => {
 
-  console.log(route);
+  const catId = route.params.item.id;
+
+  const dMeal = MEALS.filter(meal => meal.catIds.indexOf(catId) >= 0 );
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: route.params.ctitle,
+      title: route.params.item.title,
     });
+
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <Text>Category Meals Screen !!!</Text>
-      <StatusBar style="auto" />
-      <Button title="Go to Meal Detail" onPress={() => navigation.navigate("Meal Detail Screen") } /> 
-      {/* <Button title="Go to Back" onPress={() => navigation.goBack() } />  */}
-    </View>
+    <FlatList
+      keyExtractor={(item, index) => item.id}
+      data={dMeal}
+      renderItem={(meal) => <GridMealItemScreen
+        meal={meal}
+        catId={catId}
+        navigation={navigation}
+      />}
+      numColumns={1} />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default CategoryMealsScreen;
+export default CategoryMealsScreen; 

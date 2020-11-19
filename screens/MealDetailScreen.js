@@ -1,24 +1,58 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 
-const MealDetailScreen = ({ navigation }) => {
+const MealDetailScreen = ({ navigation, route }) => {
+
+  const meal = route.params.item;
+
+  const image = { uri: meal.img };
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: route.params.item.title,
+    });
+
+  }, [navigation]);
+
   return (
-    <View style={styles.container}>
-      <Text>MealDetail Screen !!!</Text>
-      <StatusBar style="auto" />
-      <Button title="Go to Cetogories" onPress={() => navigation.popToTop()} /> 
+    <View style={{
+      margin: 15,
+    }}>
+      <ImageBackground source={image} style={styles.image} >
+        <Text style={{
+          color: "#fff", fontSize: 18, textAlign: "center", position: "absolute",
+          bottom: 0,
+          backgroundColor: "teal",
+          padding: 5,
+          width: "100%"
+        }}>{meal.title}</Text>
+      </ImageBackground>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'left', }}>Ingredients</Text>
+        <Text>{meal.ingredients}</Text>
+      </View>
+      <View style={styles.container}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'left' }}>Reciepe</Text>
+        <Text>{meal.reciepe}</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  image: {
+    width: "100%",
+    height: 300,
+    resizeMode: "cover",
+    justifyContent: "center",
+    overflow: "hidden",
+    borderRadius: 10,
+    marginBottom: 20,
   },
+  container : {
+    marginVertical:10
+  }
 });
 
 export default MealDetailScreen;
