@@ -19,7 +19,6 @@ const GridMealItemScreen = ({ navigation, meal }) => {
                 justifyContent: 'center',
                 color: "#141823",
                 height: 200,
-                width: 325,
             }}>
                 <ImageBackground source={image} style={styles.image} >
                     <Text style={{ color: "#fff", fontSize: 18, textAlign: "center", position: "absolute",

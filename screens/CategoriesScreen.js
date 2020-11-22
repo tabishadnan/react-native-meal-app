@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import { CATEGORIES } from '../categories/Categories';
-import GridCateogoryItemScreen from './GridCateogoryItemScreen';
+import GridCateogoryItemScreen from '../categories/GridCateogoryItemScreen';
 
 const CategoriesScreen = ({ navigation }) => {
   return (
